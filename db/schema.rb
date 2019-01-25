@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_13_104824) do
+ActiveRecord::Schema.define(version: 2019_01_25_032612) do
 
   create_table "members", force: :cascade do |t|
     t.integer "number", null: false
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 2019_01_13_104824) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "phone"
+    t.string "password_digest"
     t.index ["name"], name: "name_index", unique: true
   end
 

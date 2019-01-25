@@ -13,7 +13,7 @@
     <td><%= form.text_field :full_name %></td>
   </tr>
   <tr>
-    <!-- 下記のhuman_attribute_nameはモデルの属性名をローケルテキストから鳥だすための記述 -->
+    <!-- 下記のhuman_attribute_nameはモデルの属性名をローケルテキストから取りだすための記述 -->
     <th><%= Member.human_attribute_name(:sex) %></th>
     <td>
       <%= form.radio_button :sex, 1 %>
@@ -30,11 +30,20 @@
     <th><%= form.label :email %></th>
     <td><%= form.text_field :email %></td>
   </tr>
-  <tr>
-    <th><%= Member.human_attribute_name(:administrator) %></th>
-    <td>
-      <%= form.check_box :administrator %>
-      <%= form.label :administrator %>
-    </td>
-  </tr>
+  <% if @member.new_record? %>
+    <!-- new_record?はモデルオブジェクトがDBに保存されていないときにtrueを返す（新規登録の時のみ表示） -->
+    <tr>
+      <th><%= form.label :password, "パスワード" %></th>
+      <td><%= form.text_field :password %></td>
+    </tr>
+  <% end %>
+  <% if controller.kind_of?(MembersController) %>
+    <tr>
+      <th><%= Member.human_attribute_name(:administrator) %></th>
+      <td>
+        <%= form.check_box :administrator, disabled: !current_member.administrator? %>
+        <%= form.label :administrator %>
+      </td>
+    </tr>
+  <% end %>
 </table>

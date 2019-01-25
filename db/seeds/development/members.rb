@@ -10,6 +10,8 @@ gnames = ["太郎","二郎","花子"]
     email: "#{names[idx]}@example.com",
     birthday:"1994-06-25",
     sex: [1,1,2][idx % 3],
-    administrator: (idx == 0)
+    administrator: (idx == 0),
+    password: "asagao!",
+    password_confirmation: "asagao!"
     )
 end
