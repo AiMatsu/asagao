@@ -5,6 +5,7 @@ class Member < ApplicationRecord
   # これによって、Memberクラスにpasswordおよびpassword_confirmationの２つの属性が定義される
   # authenticateメソッドも追加される
   # バリデーションもデフォで設定される
+  has_many :entries, dependent: :destroy
 
   validates :number, presence: true,
     numericality: {
