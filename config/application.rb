@@ -35,7 +35,14 @@ module Asagao
 
 
     # ストロングパラメータを無効化　あとで有効かする！！
-    config.action_controller.permit_all_parameters = true
+    # config.action_controller.permit_all_parameters = true
+
+
+    # ルーティングエラーは、Action Dispatchが処理しているため、ApplicationControllerを書き換えただけでは処理できない。
+    # →Action Controllerに伝わらない例外を処理する方法として、ErrorControllerのshowアクションを呼ぶように指定
+    config.exceptions_app = ->(env) do
+      ErrorsController.action(:show).call(env)
+    end
 
   end
 end
